@@ -5,6 +5,7 @@ import java.util.List;
 public class Jena1 {
 
     private List<Person> tab;
+    private  List<Movie> movies;
 
     public Jena1(Model model){
 
@@ -13,7 +14,8 @@ public class Jena1 {
 
         StmtIterator iter = model.listStatements();
         tab = new ArrayList<Person>();
-        List<Movie> movies = new ArrayList<Movie>();
+        movies = new ArrayList<Movie>();
+        //List<Movie> movies = new ArrayList<Movie>();
 
         // print out the predicate, subject and object of each statement
         while (iter.hasNext()) {
@@ -56,4 +58,5 @@ public class Jena1 {
     public List<Person> getPersons() {
         return tab;
     }
+    public List<Movie> getMovies() {return movies; }
 }

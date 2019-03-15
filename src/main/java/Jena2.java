@@ -170,15 +170,15 @@ public class Jena2 {
         while (resultSet.hasNext()) {
             QuerySolution s = resultSet.nextSolution();
             String relation = s.getResource("rel").toString().split("#")[1];
-            if(relation.equals("hasWriter")) {
+            if(relation.contains("hasWriter")) {
                 getPerson(s.getResource("person")).addWriterOf(getMovie(s.getResource("movie")));
                 getMovie(s.getResource("movie")).addWritor(getPerson(s.getResource("person")));
             }
-            if(relation.equals("hasActor")) {
+            if(relation.contains("hasActor")) {
                 getPerson(s.getResource("person")).addActIn(getMovie(s.getResource("movie")));
                 getMovie(s.getResource("movie")).addActors(getPerson(s.getResource("person")));
             }
-            if(relation.equals("hasDirector")) {
+            if(relation.contains("hasDirector")) {
                 getMovie(s.getResource("movie")).addDirector(getPerson(s.getResource("person")));
                 getPerson(s.getResource("person")).addDirectorOf(getMovie(s.getResource("movie")));
             }

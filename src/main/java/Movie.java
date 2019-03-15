@@ -88,4 +88,8 @@ public class Movie {
         }
         return retour;
     }
+
+    public String getType() {
+        return type;
+    }
 }

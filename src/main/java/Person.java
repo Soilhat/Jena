@@ -36,6 +36,18 @@ public class Person {
         direct = null;
     }
 
+    public List<Movie> getActIn() {
+        return actIn;
+    }
+
+    public List<Movie> getWrite() {
+        return write;
+    }
+
+    public List<Movie> getDirect() {
+        return direct;
+    }
+
     String getId() {
         return id;
     }
@@ -60,6 +72,10 @@ public class Person {
         this.gender = gender;
     }
 
+    public String getType() {
+        return type;
+    }
+
     void setType(String type) {
         if(type != null){
             if(this.type == null) this.type = type;
@@ -70,21 +86,21 @@ public class Person {
     void addActIn(Movie movie){
         if(actIn == null) actIn = new ArrayList<Movie>();
         if(!actIn.contains(movie)) actIn.add(movie);
+        if(!type.contains("Actor")) type += " Actor";
     }
 
     void addWriterOf(Movie movie){
         if(write == null) write = new ArrayList<Movie>();
         if(!write.contains(movie)) write.add(movie);
+        if(!type.contains("Writer")) type += " Writer";
     }
 
     void addDirectorOf(Movie movie){
         if(direct == null) direct = new ArrayList<Movie>();
         if(!direct.contains(movie)) direct.add(movie);
+        if(!type.contains("Director")) type += " Director";
     }
 
-    public List<Movie> getActIn() {
-        return actIn;
-    }
 
     @Override
     public String toString() {

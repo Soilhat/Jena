@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListViewExperiments">
+   <children>
+      <ListView id="listActors" layoutX="38.0" layoutY="21.0" prefHeight="155.0" prefWidth="112.0" />
+      <ListView id="listWritors" layoutX="177.0" layoutY="21.0" prefHeight="155.0" prefWidth="112.0" />
+      <ListView id="listDirectors" layoutX="316.0" layoutY="21.0" prefHeight="155.0" prefWidth="112.0" />
+      <ListView id="listGenres" layoutX="455.0" layoutY="21.0" prefHeight="155.0" prefWidth="112.0" />
+      <ListView id="listMovies" layoutX="39.0" layoutY="231.0" prefHeight="155.0" prefWidth="528.0" />
+      <Button id="btnFilter" layoutX="274.0" layoutY="188.0" mnemonicParsing="false" text="Filter" />
+   </children>
+</AnchorPane>
