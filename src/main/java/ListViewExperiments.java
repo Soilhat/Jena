@@ -120,6 +120,13 @@ public class ListViewExperiments extends Application  {
 
 
         Button button = new Button("Read Selected Value");
+        Button btnClear = new Button("clear");
+        btnClear.setOnAction(event2 -> {
+            //listActors.getSelectionModel().setSelectionMode(null);
+            listMovies.getItems().clear();
+
+
+        });
 
         button.setOnAction(event -> {
             listMovies.setItems(FXCollections.observableArrayList());
@@ -132,24 +139,33 @@ public class ListViewExperiments extends Application  {
                 listMovies.getItems().removeAll();
 
 
+
+
             for(Object o : indicesActors){
+                ListView l = new ListView();
+                int i = 0;
                 //System.out.println((jena1.getPeople().get((int)o)) );
                 if (jena1.getPeople().get((int)o).getActIn() != null){
                     for(Movie m : (jena1.getPeople().get((int)o)).getActIn()){
-                    listMovies.getItems().add(m.toString());
+                    listMovies.getItems().add(i,m.toString());
+                        //listMovies.getItems().add(m.toString());
                     t.setText(m.toString());
+                    i++;
                     }
                 }
                 else listMovies.getItems().add("No match");
             }
 
             for(Object o : indicesGenres){
-
+                int i = 0;
+                //indicesActors = null;
                 for(Movie m : jena1.getMovies()){
                     if(m.getType().contains((String)listGenres.getItems().get((int)o))){
-                        listMovies.getItems().add(m.toString());
+                        //listMovies.getItems().add(m.toString());
+                        listMovies.getItems().add(i, m.toString());
                         t.setText(m.toString());
                     }
+                    i++;
 
                 }
             }
@@ -174,11 +190,10 @@ public class ListViewExperiments extends Application  {
             }
 
 
-
         });
 
-        listMovies.getItems().clear();
-        VBox vBox = new VBox(lblActors,listActors,lblDirectors,listDirectors,lblWriters, listWriters,lblGenres, listGenres, button,listMovies);
+        //listMovies.getItems().clear();
+        VBox vBox = new VBox(lblActors,listActors,lblDirectors,listDirectors,lblWriters, listWriters,lblGenres, listGenres, button,listMovies,btnClear);
 
         Scene scene = new Scene(vBox, 600, 400);
         primaryStage.setScene(scene);
