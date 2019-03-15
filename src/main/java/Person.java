@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Person {
 
     private String id;
@@ -5,16 +8,40 @@ public class Person {
     private String nationality;
     private String age;
     private String gender;
+    private String type;
+    private List<Movie> actIn;
+    private List<Movie> write;
+    private List<Movie> direct;
 
     public Person(String id){
         this.id = id;
         name = null;
         nationality = null;
         age = null;
+        type = null;
+        actIn = null;
+        write = null;
+        direct = null;
+    }
+
+    public Person(String id, String name, String nationality, String age, String gender, String type) {
+        this.id = id;
+        this.name = name;
+        this.nationality = nationality;
+        this.age = age;
+        this.gender = gender;
+        this.type = type;
+        actIn = null;
+        write = null;
+        direct = null;
     }
 
     String getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     void setAge(String age) {
@@ -33,8 +60,44 @@ public class Person {
         this.gender = gender;
     }
 
+    void setType(String type) {
+        if(type != null){
+            if(this.type == null) this.type = type;
+            else this.type += " " + type;
+        }
+    }
+
+    void addActIn(Movie movie){
+        if(actIn == null) actIn = new ArrayList<Movie>();
+        if(!actIn.contains(movie)) actIn.add(movie);
+    }
+
+    void addWriterOf(Movie movie){
+        if(write == null) write = new ArrayList<Movie>();
+        if(!write.contains(movie)) write.add(movie);
+    }
+
+    void addDirectorOf(Movie movie){
+        if(direct == null) direct = new ArrayList<Movie>();
+        if(!direct.contains(movie)) direct.add(movie);
+    }
+
     @Override
     public String toString() {
-        return name + ":\n\tGender: " + gender + "\n\tAge: " + age + "\n\tNationality: " + nationality;
+        return name + ":" +
+                ((type!= null)? "\n\tType: " + type : "")+
+                ((gender!= null)? "\n\tGender: " + gender : "") +
+                ((age!= null)?"\n\tAge: " + age : "") +
+                ((nationality!= null)?"\n\tNationality: " + nationality : "");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean retour = false;
+        if(obj.getClass() == this . getClass()){
+            if(((Person)obj).getId().equals(id))
+                retour = true;
+        }
+        return retour;
     }
 }

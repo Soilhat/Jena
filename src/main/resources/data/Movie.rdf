@@ -292,6 +292,17 @@
     
 
 
+    <!-- http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#Idris -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#Idris">
+        <rdf:type rdf:resource="http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#Actor"/>
+        <gender>Male</gender>
+        <name>Idris Elba</name>
+        <nationality>British</nationality>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#John -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#John">
@@ -325,7 +336,6 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#Pulp_Fiction">
         <rdf:type rdf:resource="http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#Crime"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#Thriller"/>
-        <hasDirector rdf:resource="http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#Quentin"/>
         <country>USA</country>
         <language>English</language>
         <title>Pulp Fiction</title>
@@ -359,6 +369,16 @@
         <gender>female</gender>
         <name>Uma Thurman</name>
         <nationality>American</nationality>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#Will -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#Will">
+        <rdf:type rdf:resource="http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#Actor"/>
+        <gender>Male</gender>
+        <name>Will Smith</name>
     </owl:NamedIndividual>
 </rdf:RDF>
 

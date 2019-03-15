@@ -3,7 +3,6 @@ import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.util.FileManager;
 
 import java.io.InputStream;
-import java.util.List;
 
 public class main {
     public static void main(String[] args) {
@@ -19,10 +18,12 @@ public class main {
         // read the RDF/XML file
         model.read(in, null);
 
-        Jena1 jena1 = new Jena1(model);
+        /*Jena1 jena1 = new Jena1(model);
         List<Person> personList = jena1.getPersons();
-        for(Person p : personList) System.out.println(p);
-        //Jena2 jena2 = new Jena2(model);
+        for(Person p : personList) System.out.println(p);*/
+        Jena2 jena2 = new Jena2(model);
+        /*List<Movie> people = jena2.getMovies();
+        for(Movie p : people) System.out.println(p);*/
         //Jena3 jena3 = new Jena3(model);
     }
 }

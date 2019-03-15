@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Movie {
 
     private String id;
@@ -6,6 +8,9 @@ public class Movie {
     private String language;
     private String country;
     private String type;
+    private List<Person> actors;
+    private List<Person> directors;
+    private List<Person> writers;
 
     public Movie(String id){
         this.id = id;
@@ -16,32 +21,39 @@ public class Movie {
         type = null;
     }
 
-    public String getId() {
+    public Movie(String id, String title, String language, String year, String country, String type) {
+        this.id = id;
+        this.year = year;
+        this.title = title;
+        this.language = language;
+        this.country = country;
+        this.type = type;
+    }
+
+    String getId() {
         return id;
     }
 
-    public void setTitle(String title) {
+    void setTitle(String title) {
         this.title = title;
     }
 
-    public void setLanguage(String language) {
+    void setLanguage(String language) {
         this.language = language;
     }
 
-    public void setCountry(String country) {
+    void setCountry(String country) {
         this.country = country;
     }
 
-    public void setType(String type) {
-        if(this.type == null )
-            this.type = type;
-        else {
-            if(!this.type.contains(type))
-                this.type += ", " + type;
+    void setType(String type) {
+        if(type != null){
+            if(this.type == null) this.type = type;
+            else this.type += " " + type;
         }
     }
 
-    public void setYear(String year) {
+    void setYear(String year) {
         this.year = year;
     }
 
@@ -49,5 +61,15 @@ public class Movie {
     public String toString() {
         String def = title + ":\n\tType: " + type + "\n\tYear: " + year + "\n\tLanguage: " + language + "\n\tCountry: "+ country;
         return def;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean retour = false;
+        if(obj.getClass() == this . getClass()){
+            if(((Movie)obj).getId().equals(id))
+                retour = true;
+        }
+        return retour;
     }
 }
