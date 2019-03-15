@@ -82,6 +82,10 @@ public class Person {
         if(!direct.contains(movie)) direct.add(movie);
     }
 
+    public List<Movie> getActIn() {
+        return actIn;
+    }
+
     @Override
     public String toString() {
         return name + ":" +

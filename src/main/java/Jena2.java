@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Jena2 {
-    Model model;
-    List<Person> people;
-    List<Movie> movies;
+    private Model model;
+    private List<Person> people;
+    private List<Movie> movies;
 
-    public Jena2(Model model){
+    Jena2(Model model){
 
         this.model = model;
 
@@ -42,7 +42,7 @@ public class Jena2 {
         Relation();
     }
 
-    public List<Person> getPeople() {
+    List<Person> getPeople() {
         return people;
     }
 
@@ -118,7 +118,7 @@ public class Jena2 {
         return movies;
     }
 
-    void Relation(){
+    private void Relation(){
         String q = "PREFIX pref:\t<http://www.semanticweb.org/nancy/ontologies/2019/2/untitled-ontology-5#>\n" +
                 "PREFIX rdf:\t\t<http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
                 "\n" +
@@ -138,15 +138,16 @@ public class Jena2 {
             QuerySolution s = resultSet.nextSolution();
             String relation = s.getResource("rel").toString().split("#")[1];
             if(relation.equals("isWriterOf")) {
-                getPerson(s.getResource("person")).addDirectorOf(getMovie(s.getResource("movie")));
-                getMovie(s.getResource("movie"));
+                getPerson(s.getResource("person")).addWriterOf(getMovie(s.getResource("movie")));
+                getMovie(s.getResource("movie")).addWritor(getPerson(s.getResource("person")));
             }
             if(relation.equals("isActorOf")) {
                 getPerson(s.getResource("person")).addActIn(getMovie(s.getResource("movie")));
-                getMovie(s.getResource("movie"));
+                getMovie(s.getResource("movie")).addActors(getPerson(s.getResource("person")));
             }
             if(relation.equals("isDirectorOf")) {
-                getPerson(s.getResource("person")).addWriterOf(getMovie(s.getResource("movie")));
+                getPerson(s.getResource("person")).addDirectorOf(getMovie(s.getResource("movie")));
+                getMovie(s.getResource("movie")).addDirector(getPerson(s.getResource("person")));
             }
 
         }
@@ -169,26 +170,25 @@ public class Jena2 {
         while (resultSet.hasNext()) {
             QuerySolution s = resultSet.nextSolution();
             String relation = s.getResource("rel").toString().split("#")[1];
-            System.out.println(relation);
             if(relation.equals("hasWriter")) {
-                getMovie(s.getResource("movie"));
-                getPerson(s.getResource("person")).addDirectorOf(getMovie(s.getResource("movie")));
+                getPerson(s.getResource("person")).addWriterOf(getMovie(s.getResource("movie")));
+                getMovie(s.getResource("movie")).addWritor(getPerson(s.getResource("person")));
             }
             if(relation.equals("hasActor")) {
-                getMovie(s.getResource("movie"));
                 getPerson(s.getResource("person")).addActIn(getMovie(s.getResource("movie")));
+                getMovie(s.getResource("movie")).addActors(getPerson(s.getResource("person")));
             }
             if(relation.equals("hasDirector")) {
-                getMovie(s.getResource("movie"));
-                getPerson(s.getResource("person")).addWriterOf(getMovie(s.getResource("movie")));
+                getMovie(s.getResource("movie")).addDirector(getPerson(s.getResource("person")));
+                getPerson(s.getResource("person")).addDirectorOf(getMovie(s.getResource("movie")));
             }
 
         }
         qexec.close();
     }
 
-    Person getPerson(Resource id){
-        return people.get(people.indexOf(new Person(id.toString())));
+    private Person getPerson(Resource id){
+        return (id != null )? people.get(people.indexOf(new Person(id.toString()))): null;
     }
-    Movie getMovie(Resource id) { return movies.get(movies.indexOf(new Movie(id.toString()))); }
+    private Movie getMovie(Resource id) { return (id != null )? movies.get(movies.indexOf(new Movie(id.toString()))): null; }
 }

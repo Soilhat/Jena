@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
@@ -55,6 +56,21 @@ public class Movie {
 
     void setYear(String year) {
         this.year = year;
+    }
+
+    void addActors(Person person){
+        if(actors == null) actors = new ArrayList<Person>();
+        if(!actors.contains(person)) actors.add(person);
+    }
+
+    void addWritor(Person person){
+        if(writers == null) writers = new ArrayList<Person>();
+        if(!writers.contains(person)) writers.add(person);
+    }
+
+    void addDirector(Person person){
+        if(directors == null) directors = new ArrayList<Person>();
+        if(!directors.contains(person)) directors.add(person);
     }
 
     @Override
